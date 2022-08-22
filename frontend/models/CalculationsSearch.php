@@ -17,9 +17,9 @@ class CalculationsSearch extends Calculations
     public function rules()
     {
         return [
-            [['id', 'user_id', 'years_of_investment', 'annual_return_rate', 'market_history'], 'integer'],
+            [['id', 'user_id'], 'integer'],
             [['reference_id'], 'safe'],
-            [['current_value', 'annual_withdrawal', 'management_fee'], 'number'],
+            //[['current_value',], 'number'],
         ];
     }
 
@@ -62,11 +62,6 @@ class CalculationsSearch extends Calculations
             'id' => $this->id,
             'user_id' => $this->user_id,
             'current_value' => $this->current_value,
-            'years_of_investment' => $this->years_of_investment,
-            'annual_return_rate' => $this->annual_return_rate,
-            'annual_withdrawal' => $this->annual_withdrawal,
-            'management_fee' => $this->management_fee,
-            'market_history' => $this->market_history,
         ]);
 
         $query->andFilterWhere(['like', 'reference_id', $this->reference_id]);
