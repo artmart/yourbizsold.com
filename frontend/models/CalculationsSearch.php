@@ -17,9 +17,9 @@ class CalculationsSearch extends Calculations
     public function rules()
     {
         return [
-            [['id', 'user_id'], 'integer'],
-            [['reference_id'], 'safe'],
-            //[['current_value',], 'number'],
+            [['id', 'user_id', 'age'], 'integer'],
+            [['business_sale_price', 'owner_basis', 'ordinary_gain', 'other_ordinary_income', 'other_capital_gain', 'charitable_giving', 'tax_credits', 'opportunity_zone', 'rate_of_return', 'cash_needed', 'estimated_future_income'], 'number'],
+            [['filing_status', 'date'], 'safe'],
         ];
     }
 
@@ -61,10 +61,22 @@ class CalculationsSearch extends Calculations
         $query->andFilterWhere([
             'id' => $this->id,
             'user_id' => $this->user_id,
-            'current_value' => $this->current_value,
+            'business_sale_price' => $this->business_sale_price,
+            'owner_basis' => $this->owner_basis,
+            'ordinary_gain' => $this->ordinary_gain,
+            'other_ordinary_income' => $this->other_ordinary_income,
+            'other_capital_gain' => $this->other_capital_gain,
+            'charitable_giving' => $this->charitable_giving,
+            'tax_credits' => $this->tax_credits,
+            'opportunity_zone' => $this->opportunity_zone,
+            'rate_of_return' => $this->rate_of_return,
+            'cash_needed' => $this->cash_needed,
+            'age' => $this->age,
+            'estimated_future_income' => $this->estimated_future_income,
+            'date' => $this->date,
         ]);
 
-        $query->andFilterWhere(['like', 'reference_id', $this->reference_id]);
+        $query->andFilterWhere(['like', 'filing_status', $this->filing_status]);
 
         return $dataProvider;
     }
